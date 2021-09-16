@@ -63,7 +63,7 @@
                     </div>
                 </div>   
             </div>             
-            <button data-open-popup-form="" class="rent_button 11">Забронировать</p>      
+            <button data-rest-name="<?=$model['restaurant_name']?>" data-rest-type="<?=$model['restaurant_main_type']?>" data-open-popup-form="" class="rent_button">Забронировать</p>      
         </div>
     </div>
   </div>
