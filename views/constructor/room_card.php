@@ -2,17 +2,18 @@
 	use frontend\components\Declension;
 	use frontend\modules\pmnbd\models\ElasticItems;
 	use common\models\Subdomen;
-	
+
 	$rest = ElasticItems::find()->query([
 			'nested' => ['path' => 'rooms','query' => ['bool' => ['must' => ['match' => ['rooms.gorko_id' => $text_id]]]]]
 		])->one();
-	if (!$rest) die();
+	if (!$rest) return '';
 	foreach ($rest['rooms'] as $rest_room) {
 		if ($rest_room['gorko_id'] == $text_id) {
 			$model = $rest_room;
 			break;
 		}
 	}
+	if (!$model) return '';
 
 	$subdomen = Subdomen::findOne(['city_id' => $rest['restaurant_city_id']]);
 	$alias = $subdomen->alias == 'msk' ? 'https://birthday-place.ru' : ('https://'.$subdomen->alias.'.birthday-place.ru');
@@ -24,7 +25,7 @@
         	<img loading="lazy" class="item_present" src="/upload/img/bron.png" atl="Подарок за бронирование в зала «<?=$model['name']?>» в ресторане «<?=$rest['restaurant_name']?>»">
 	        <a href="<?=$alias?>/catalog/restoran-<?=$model['restaurant_slug']?>/<?=$model['slug']?>/">
 	            <div class="item_img">
-	                <img loading="lazy" src="<?=Declension::get_image_src($model['images'][0]['subpath'])?>" alt="Зал «<?=$model['name']?>» в ресторане «<?=$rest['restaurant_name']?>»">
+	                <img loading="lazy" src="<?= $model['images'] ? Declension::get_image_src($model['images'][0]['subpath']) : '/upload/img/bd/no_photo.png'?>" alt="Зал «<?=$model['name']?>» в ресторане «<?=$rest['restaurant_name']?>»">
 	            </div>
 	        </a>
 	    </div>
@@ -58,7 +59,7 @@
                     </div>
                 </div>    
             </div> 
-            <button data-rest-name="<?=$model['restaurant_name']?>" data-rest-type="<?=$model['restaurant_main_type']?>" data-open-popup-form="" class="rent_button">Забронировать</p>                   
+            <button data-rest-name="<?=$model['restaurant_name']?>" data-rest-type="<?=$model['restaurant_main_type']?>" data-open-popup-form-blog="" class="rent_button">Забронировать</p>                   
         </div>
     </div>
   </div>

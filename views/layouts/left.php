@@ -10,6 +10,7 @@
                 echo dmstr\widgets\Menu::widget([
                         'options' => ['class' => 'sidebar-menu', 'data-widget'=> 'tree'],
                         'items' => \Yii::$app->user->isGuest? [] : [
+                                ['label' => 'Рестораны (яндекс отзывы)', 'url' => ['/restaurants-yandex']],
                                 ['label' => 'Рестораны', 'url' => ['/restaurants']],
                                 ['label' => 'Залы', 'url' => ['/rooms']],
                                 ['label' => 'Фильтр', 'url' => ['/filter']],

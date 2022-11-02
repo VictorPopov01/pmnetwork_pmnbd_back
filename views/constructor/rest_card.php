@@ -10,7 +10,7 @@
 				],
 			]
 		])->one();
-	if (!$model) die();
+	if (!$model) return '';
 	$rooms = $model['rooms'];
 	$rooms_price_arr = [];
 
@@ -27,15 +27,15 @@
     <div class="post-block-rest-item">
     	<div class="item_image">
         	<img loading="lazy" class="item_present" src="/upload/img/bron.png" atl="Подарок за бронирование в ресторане «<?=$model['restaurant_name']?>»">
-	        <a href="<?=$alias?>/catalog/restoran-<?=$model['restaurant_slug']?>/">
+	        <a href="<?=$alias?>/catalog/restoran-<?=$model['restaurant_slug']?>/" data-target="rest_blog">
 	            <div class="item_img">
-	                <img loading="lazy" src="<?=Declension::get_image_src($model['restaurant_images'][0]['subpath'])?>" alt="Ресторан <?=$model['restaurant_name']?>">
+	                <img loading="lazy" src="<?= $model['restaurant_images'] ? Declension::get_image_src($model['restaurant_images'][0]['subpath']) : '/upload/img/bd/no_photo.png'?>" alt="Ресторан <?=$model['restaurant_name']?>">
 	            </div>
 	        </a>
 	    </div>
         <div class="item_info">
             <div class="item_info_top">
-                <a href="<?=$alias?>/catalog/restoran-<?=$model['restaurant_slug']?>/">
+                <a href="<?=$alias?>/catalog/restoran-<?=$model['restaurant_slug']?>/" data-target="rest_blog" >
                     <p class="item_name"><?=$model['restaurant_name']?></p>
                 </a>
                 <p class="item_address"><?=$model['restaurant_address']?></p>
@@ -63,7 +63,7 @@
                     </div>
                 </div>   
             </div>             
-            <button data-rest-name="<?=$model['restaurant_name']?>" data-rest-type="<?=$model['restaurant_main_type']?>" data-open-popup-form="" class="rent_button">Забронировать</p>      
+            <button data-rest-name="<?=$model['restaurant_name']?>" data-rest-type="<?=$model['restaurant_main_type']?>" data-open-popup-form-blog="" data-target="bron_1" class="rent_button">Забронировать</p>      
         </div>
     </div>
   </div>

@@ -4,13 +4,14 @@
 	$rest = ElasticItems::find()->query([
             'nested' => ['path' => 'rooms','query' => ['bool' => ['must' => ['match' => ['rooms.gorko_id' => $text_id]]]]]
         ])->one();
-    if (!$rest) die();
+    if (!$rest) return '';
     foreach ($rest['rooms'] as $rest_room) {
         if ($rest_room['gorko_id'] == $text_id) {
             $model = $rest_room;
             break;
         }
     }
+    if (!$model) return '';
 ?>
 <div  class="post-block post-block-slider post-block_color_<?=$setting_color?> post-block_margin_<?=$setting_margin?>">
   <div class="wrapper wrapper_size_<?=$setting_size?>">

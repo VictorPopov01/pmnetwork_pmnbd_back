@@ -10,7 +10,7 @@
                 ],
             ]
         ])->one();
-    if (!$model) die();
+    if (!$model) return '';
 ?>
 <div  class="post-block post-block-slider post-block_color_<?=$setting_color?> post-block_margin_<?=$setting_margin?>">
   <div class="wrapper wrapper_size_<?=$setting_size?>">
