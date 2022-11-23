@@ -25,6 +25,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $collection
  * @property integer $sort
  * @property string $html
+ * @property string $badge_items
  * @property integer $created_by
  * @property string $created_at
  * @property integer $updated_by
@@ -78,7 +79,7 @@ class BlogPost extends BaseSiteObject
     {
         return [
             [['name', 'alias'], 'required'],
-            [['intro', 'html'], 'string'],
+            [['intro', 'html','badge_items'], 'string'],
             [['published', 'featured', 'collection', 'sort'], 'integer'],
             [['name', 'alias', 'short_intro'], 'string', 'max' => 255],
             [['published_at'], 'date', 'format' => 'php:Y-m-d H:i:s'],
@@ -101,6 +102,7 @@ class BlogPost extends BaseSiteObject
             'published' => Yii::t('models', 'Published'),
             'featured' => Yii::t('models', 'Featured'),
             'collection' => 'В подборки',
+            'badge_items' => 'Плашка в карточках',
             'created_by' => Yii::t('models', 'Created By'),
             'created_at' => Yii::t('models', 'Created At'),
             'updated_by' => Yii::t('models', 'Updated By'),

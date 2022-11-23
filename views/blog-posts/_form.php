@@ -3,6 +3,7 @@
 use backend\assets\Constructor;
 use backend\widgets\DateTimePicker;
 use backend\widgets\HtmlEditor;
+use backend\widgets\Badge;
 use backend\modules\pmnbd\models\blog\BlogTag;
 use common\models\Subdomen;
 use kartik\select2\Select2;
@@ -22,10 +23,10 @@ Constructor::register($this);
 
 ?>
 
-<div class="blog-post-form" 
-	data-ctor-draft-id="<?= $model->id ?>" 
+<div class="blog-post-form"
+	data-ctor-draft-id="<?= $model->id ?>"
 	data-ctor-preview-link="<?= \Yii::$app->params['siteProtocol'] . '://' . \Yii::$app->params['siteAddress'] . '/blog/preview-post/' . $model->id . '/' ?>"
-	data-ctor-save-link="<?= '/blog-post/' . $model->id . '/save/' ?>" 
+	data-ctor-save-link="<?= '/blog-post/' . $model->id . '/save/' ?>"
 >
 
 	<?php $this->beginBlock('main'); ?>
@@ -103,6 +104,10 @@ Constructor::register($this);
 	<?php echo $form->field($model, 'intro')->widget(HtmlEditor::class) ?>
 
 	<?php echo $form->field($model, 'short_intro')->textarea() ?>
+    
+    <?php echo $form->field($model, 'badge_items')->hiddenInput(['id'=>'badge_items'])->label(false) ?>
+
+    <?php echo Badge::widget(['badge'=>$model->badge_items]); ?>
 
 	<!-- attribute published -->
 	<?php echo $form->field($model, 'published')->checkbox([], false) ?>
@@ -114,6 +119,7 @@ Constructor::register($this);
 	<?php echo $form->field($model, 'featured')->checkbox([], false) ?>
 
 	<?php echo $form->field($model, 'published_at')->widget(DateTimePicker::class) ?>
+
 
 	<?php echo $form->errorSummary($model); ?>
 
