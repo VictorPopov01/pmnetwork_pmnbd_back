@@ -117,7 +117,7 @@ $post = BlogPost::findOne(['alias' => trim($blog_alias)]);
                             <p class="item_meta_item_title">
                                 <img loading="lazy" src="/upload/img/item_price.svg"
                                      alt="Стоймость аренды в <?= $model['restaurant_name'] ?>">
-                                <span>Стоимость аренды без еды:</span>
+                                <span>Стоимость банкета:</span>
                             </p>
 
                             <p class="item_meta_item_value">
@@ -160,6 +160,16 @@ $post = BlogPost::findOne(['alias' => trim($blog_alias)]);
 
                     </div>
                 </div>
+
+                <div class="item_btn">
+                    <a href="tel:<?= $model['restaurant_phone'] ?>" class="item_btn-phone _button" data-target="call">
+                        Позвонить
+                    </a>
+                    <button class="item_btn-book _button" data-rest-name="<?= $model['restaurant_name'] ?>"
+                            data-rest-type="<?= $model['restaurant_main_type'] ?>" data-open-popup-form-blog>Забронировать
+                    </button>
+                </div>
+
                 <!--            <button data-rest-name="--><? //=$model['restaurant_name']?><!--" data-rest-type="-->
                 <? //=$model['restaurant_main_type']?><!--" data-open-popup-form-blog="" data-target="bron_1" class="rent_button">Забронировать</p>-->
             </div>

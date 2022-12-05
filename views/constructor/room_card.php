@@ -102,7 +102,7 @@ $post = BlogPost::findOne(['alias' => trim($blog_alias)]);
                             <p class="item_meta_item_title">
                                 <img loading="lazy" src="/upload/img/item_price.svg"
                                      alt="Стоймость аренды в <?= $model['restaurant_name'] ?>">
-                                <span>Стоимость аренды без еды:</span>
+                                <span>Стоимость банкета:</span>
                             </p>
                             <p class="item_meta_item_value"><?= number_format($model['price'] * $model['capacity'], 0, '', ' ') ?>
                                 ₽</p>
@@ -139,6 +139,15 @@ $post = BlogPost::findOne(['alias' => trim($blog_alias)]);
                             </div>
                         <?php endif; ?>
                     </div>
+                </div>
+
+                <div class="item_btn">
+                    <a href="tel:<?= $rest['restaurant_phone'] ?>" class="item_btn-phone _button" data-target="call">
+                        Позвонить
+                    </a>
+                    <button class="item_btn-book _button" data-rest-name="<?= $rest['restaurant_name'] ?>"
+                            data-rest-type="<?= $rest['restaurant_main_type'] ?>" data-open-popup-form-blog>Забронировать
+                    </button>
                 </div>
 
 <!--                <div class="item_meta">-->
